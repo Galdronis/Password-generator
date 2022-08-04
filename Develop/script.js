@@ -1,24 +1,24 @@
 // Make sure to assign all variables first
 
 // Assignment Code
+// Sets our button up
 var generateBtn = document.querySelector("#generate");
-var lowers = "abcdefghijklmnopqrstuvwxyz".split("")
-var uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
-var numbers = "1234567890".split("")
-var special = "!?@#$%^&*()".split("")
-var length = 128
-var fullArray = []
+generateBtn.addEventListener("click", writePassword);
+// Values in function since they're only used locally anyway
+
+function writePassword() {
+
+var lowers = "abcdefghijklmnopqrstuvwxyz"
+var uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+var numbers = "1234567890"
+var special = "!?@#$%^&*()"
+// The solution to the more mundane of the two significant problems. Read it as a string, not an array! We make the array later
+var fullArray = ""
 var password = ""
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword());
-
-// This is the part that creates a password
-
-function generatePassword() {
-
+// Get the parameters set
 var passwordLength = window.prompt("How many characters long would you like your password to be?")
 if (passwordLength < 8 || passwordLength > 156) {
+  // Not sure how to make this loop back :/ (I'm telling on myself a little)
   alert("Insert valid number")
 } else  {
   var makeLower = confirm("Would you like lowercase in your password?")
@@ -26,33 +26,29 @@ if (passwordLength < 8 || passwordLength > 156) {
   var makeNumber = confirm("Would you like numbers in your password?")
   var makeSpecial = confirm("Would you like special characters in your password?")
    if (makeLower = true) {
-    fullArray = fullArray.concat(makeLower)
+    // Note the second significant problem's solution. With the concats correctly occurring in the strings and not the BOOLEANS, we get more than 4 choices from each string
+    fullArray = fullArray.concat(lowers)
   }
   if (makeUpper = true) {
-    fullArray = fullArray.concat(makeUpper)
+    fullArray = fullArray.concat(uppers)
   }
   if (makeNumber = true) {
-    fullArray = fullArray.concat(makeNumber)
+    fullArray = fullArray.concat(numbers)
   }
   if (makeSpecial = true) {
-    fullArray = fullArray.concat(makeSpecial)
-  }
-}
-  for (var i=0; i < passwordLength; i++) {
-    currentCharacter = Math.floor(Math.random() * fullArray.length)
-    password += currentCharacter
+    fullArray = fullArray.concat(special)
   }
 
-  return password
-  
+  for (var i=0; i < passwordLength; i++) {
+    var currentCharacter = Math.floor(Math.random() * fullArray.length)
+    password += fullArray.substring(currentCharacter, currentCharacter + 1)
+  }
+// Run both functions in one. One function only existed to run the other anyway.
+  document.getElementById("password").textContent = password
+  }
 } 
 
 
-// Write password to the #password input
-function writePassword() {
 
-  generatePassword();
-  var passwordText = document.querySelector("#password");
-  
-passwordText.value = password;
-}
+
+
