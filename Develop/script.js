@@ -15,11 +15,20 @@ generateBtn.addEventListener("click", writePassword);
 
 // Write password to the #password input
 function writePassword() {
-  var length = prompt("How long would you like your password to be?")
   var makeLower = confirm("Would you like lowercase in your password?")
   var makeUpper = confirm("Would you like uppercase in your password?")
   var makeNumber = confirm("Would you like numbers in your password?")
   var makespecial = confirm("Would you like special characters in your password?")
+  var minimumChar = 8
+
+  var lowerPoss = Math.floor(Math.random() + 155)
+  var lowerChoice = lowers[lowerPoss]
+  var upperChoice = Math.floor
+
+
+  if (makeLower === true) {
+    
+  }
   
   var generatePassword = generatePassword();
   var passwordText = document.querySelector("#password");
